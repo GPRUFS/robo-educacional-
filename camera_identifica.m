@@ -1,5 +1,5 @@
-%   camList = webcamlist;
-%   cam = webcam(2);
+camList = webcamlist;
+cam = webcam(2);
 cam.resolution = '1280x720';
 cam.FocusMode = 'manual';
 cam.Focus = 0;

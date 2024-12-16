@@ -1,14 +1,22 @@
-%% Nome da porta Serial a ser Conectada
-% dispositivo = serialport('COM3',9600);
+delete(instrfindall); % Fecha e apaga todos os objetos de comunicação
 
-%Configuracao da portal serial
-delete(instrfindall); %limpa todos os instrumentos anteriormente abertos no serial
-dispositivo = serial('COM4'); %variavel s da porta serial
+% Define a porta COM
+comPort = 'COM3'; % Substitua por sua porta COM
 
-set(dispositivo,'InputBufferSize', 10); %numero de bytes que o buffer armazena
-set(dispositivo,'BaudRate', 9600);
-set(dispositivo,'Parity','none');
-set(dispositivo, 'DataBits', 8);
+% Cria o objeto serial
+s = serial(comPort);
 
-fopen(dispositivo);
-flushinput(dispositivo);
+% Configura propriedades
+s.BaudRate = 115200;            % Taxa de transmissão (ajuste conforme necessário)
+s.InputBufferSize = 10;       % Tamanho do buffer de entrada em bytes
+s.Terminator = 'LF';            % Define o terminador como Line Feed (\n)
+
+% Abre a conexão
+fopen(s);
+
+% % Fecha a conexão
+% fclose(s);
+% 
+% % Remove o objeto serial
+% delete(s);
+% clear s;

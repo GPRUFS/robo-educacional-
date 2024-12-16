@@ -1,4 +1,4 @@
-function [Vermelho,Azul,laranja] = Cores(RGB)
+function [Vermelho,Azul,laranja, verde, amarelo] = Cores(RGB)
 %createMask  Threshold RGB image using auto-generated code from colorThresholder app.
 %  [BW,MASKEDRGBIMAGE] = createMask(RGB) thresholds image RGB using
 %  auto-generated code from the colorThresholder app. The colorspace and
@@ -14,16 +14,16 @@ function [Vermelho,Azul,laranja] = Cores(RGB)
 I = RGB;
 
 % Define thresholds for channel 1 based on histogram settings
-channel1Min = 157.000;
+channel1Min = 130.000;
 channel1Max = 255.000;
 
 % Define thresholds for channel 2 based on histogram settings
 channel2Min = 0.000;
-channel2Max = 49.000;
+channel2Max = 13.000;
 
 % Define thresholds for channel 3 based on histogram settings
-channel3Min = 19.000;
-channel3Max = 74.000;
+channel3Min = 0.000;
+channel3Max = 97.000;
 
 % Create mask based on chosen histogram thresholds
 sliderBW = (I(:,:,1) >= channel1Min ) & (I(:,:,1) <= channel1Max) & ...
@@ -34,15 +34,15 @@ Vermelho = sliderBW;
 %% Azul
 % Define thresholds for channel 1 based on histogram settings
 channel1Min = 0.000;
-channel1Max = 37.000;
+channel1Max = 12.000;
 
 % Define thresholds for channel 2 based on histogram settings
-channel2Min = 53.000;
-channel2Max = 98.000;
+channel2Min = 0.000;
+channel2Max = 59.000;
 
 % Define thresholds for channel 3 based on histogram settings
-channel3Min = 126.000;
-channel3Max = 185.000;
+channel3Min = 148.000;
+channel3Max = 255.000;
 % Create mask based on chosen histogram thresholds
 sliderBW = (I(:,:,1) >= channel1Min ) & (I(:,:,1) <= channel1Max) & ...
   (I(:,:,2) >= channel2Min ) & (I(:,:,2) <= channel2Max) & ...
@@ -51,21 +51,59 @@ Azul = sliderBW;
 
 %% Laranja
 % Define thresholds for channel 1 based on histogram settings
-channel1Min = 147.000;
-channel1Max = 242.000;
+channel1Min = 183.000;
+channel1Max = 255.000;
 
 % Define thresholds for channel 2 based on histogram settings
-channel2Min = 54.000;
-channel2Max = 105.000;
+channel2Min = 18.000;
+channel2Max = 133.000;
 
 % Define thresholds for channel 3 based on histogram settings
 channel3Min = 0.000;
-channel3Max = 29.000;
+channel3Max = 36.000;
 
 % Create mask based on chosen histogram thresholds
 sliderBW = (I(:,:,1) >= channel1Min ) & (I(:,:,1) <= channel1Max) & ...
   (I(:,:,2) >= channel2Min ) & (I(:,:,2) <= channel2Max) & ...
   (I(:,:,3) >= channel3Min ) & (I(:,:,3) <= channel3Max);
 laranja = sliderBW;
+
+%% Verde
+% Define thresholds for channel 1 based on histogram settings
+channel1Min = 100.000;
+channel1Max = 255.000;
+
+% Define thresholds for channel 2 based on histogram settings
+channel2Min = 199.000;
+channel2Max = 255.000;
+
+% Define thresholds for channel 3 based on histogram settings
+channel3Min = 0.000;
+channel3Max = 130.000;
+
+
+sliderBW = (I(:,:,1) >= channel1Min ) & (I(:,:,1) <= channel1Max) & ...
+  (I(:,:,2) >= channel2Min ) & (I(:,:,2) <= channel2Max) & ...
+  (I(:,:,3) >= channel3Min ) & (I(:,:,3) <= channel3Max);
+verde = sliderBW;
+
+%% Amarelo
+% Define thresholds for channel 1 based on histogram settings
+channel1Min = 172.000;
+channel1Max = 255.000;
+
+% Define thresholds for channel 2 based on histogram settings
+channel2Min = 106.000;
+channel2Max = 255.000;
+
+% Define thresholds for channel 3 based on histogram settings
+channel3Min = 0.000;
+channel3Max = 55.000;
+
+
+sliderBW = (I(:,:,1) >= channel1Min ) & (I(:,:,1) <= channel1Max) & ...
+  (I(:,:,2) >= channel2Min ) & (I(:,:,2) <= channel2Max) & ...
+  (I(:,:,3) >= channel3Min ) & (I(:,:,3) <= channel3Max);
+amarelo = sliderBW;
 
 end

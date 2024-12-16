@@ -3,33 +3,19 @@ clear
 clc
 close
 
-pkg load instrument-control
-
 global g
 
 fig = figure;
 drawnow
 set(gcf, 'KeyPressFcn', @tecla_pressionada);
 
-% Verifica portas seriais disponíveis para garantir que 'COM5' está ativa
-%availablePorts = serialportlist;
-%if ~any(strcmp(availablePorts, 'COM5'))
-%    error('A porta não está disponível. Verifique a conexão do dispositivo.');
-%end
-
-% Criando um novo objeto serialport
-s = serial('COM5', 9600); %variavel s da porta serial
-
-fopen(s);
-flushinput(s);
-% configureTerminator(dispositivo, 'LF');
-
+config_usb
 %% cria a palavra a ser transmitida (10 bytes)
 
 valor = zeros(1,10);
 valor(1) = 254; % byte de sincronia (configurado como 254 no STM)
 
-vv = 170;
+vv = 150;
 
 v1 = 0;
 v2 = 0;
@@ -77,4 +63,11 @@ fwrite(s,msg,'uint8');
 % pause(1)
 
 end
+
+% Fecha a conexão
+fclose(s);
+
+% Remove o objeto serial
+delete(s);
+clear s;
 

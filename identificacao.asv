@@ -84,9 +84,9 @@ while(1)
   Wmax = aux(2); %cálculo da vellcidade angular máxima a partir do modelo identificado [rad/s]
 
    kv = 0.01;
-   kw = 0.5;
+   kw = 0.7;
    sig = theta_e/abs(theta_e);
-   V = Vmax*tanh(kv*d)*cos(theta_e/2);
+   V = 0*Vmax*tanh(kv*d)*cos(theta_e/2);
    W = Wmax*tanh(theta_e*kw);
    (180/pi)*theta_e
    d
@@ -100,12 +100,8 @@ while(1)
   per1 = fi2/fi_max;
   per2 = fi1/fi_max;
   
-  v1 = per1*250;
-  v2 = per2*250;
-  v2 = toNonLinearControl(v1)
-  v1 = toNonLinearControl(v2)
-  
-  
+  v1 = per1*250
+  v2 = per2*250
   
   %%  Escala linear
 %   esc = 0:50:250;
@@ -119,8 +115,8 @@ while(1)
 %   end  
   %%
    
-%       comunica(v1, v2,s);  
-  comunica(0, 0,s); 
+      comunica(v1, v2,s);  
+%   comunica(0, 0,s); 
   
   T(time) = toc;
   
@@ -172,9 +168,4 @@ v = linear(Pos, T);
 plot(T, v)
 
 
-function y = toNonLinearControl(x)
-
-if(x) < 100 y =0;
-else y = 170;
-end
-end
+function toNonLinearControl()
